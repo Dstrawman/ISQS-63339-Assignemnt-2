@@ -79,3 +79,19 @@ merged_df2=pd.merge(merged_df,agg3, on='region_name')
 #write dataframe to csv
 merged_df2.to_csv(filepath)
 
+#define filepath for high efficiency model export
+filepath2 ='C:\\Users\\Dstrawma\\OneDrive - JNJ\\MYDATA\\WFA\\TTU\\Business Intelligence\\high_efficiency_model.csv'
+
+#Create new dataframe for high efficiency model
+highefficiency_df = complete.loc[complete['Efficiency'] =='high']
+highefficiency_df2 = highefficiency_df[['modelcd', 'modelname', 'installcost', 'yearlyupkeep']]
+
+#write high efficiency dataframe to csv
+highefficiency_df2.to_csv(filepath2, index=False)
+
+#adjust vendor premium based on vendor quality
+complete['new_vendor_percentage'] = complete['VendorPercent'] - .05
+complete['new_vendor_percentage'][(complete['VendorQuality'] == 'Good')] = (complete['VendorPercent'] + .05)
+
+
+
