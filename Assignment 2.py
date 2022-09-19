@@ -50,7 +50,11 @@ complete['annual_maintenance_cost'] = complete['yearlyupkeep']/complete['annual_
 #category for Efficiency
 complete['Efficiency'] = 'low'
 
+#setting parameters for high Efficiency
 complete['Efficiency'][(complete['annual_maintenance_cost'] > 1) & (complete['kilowatt_production'] < 3)] = 'high'
+complete['Efficiency'][(complete['annual_maintenance_cost'] < 1) & (complete['annual_maintenance_cost'] > 0.5) 
+                       & (complete['kilowatt_production'] > 3) & (complete['kilowatt_production'] < 6)] = 'high'
+complete['Efficiency'][(complete['kilowatt_production'] > 6) & (complete['kilowatt_production'] < 9)] = 'high'
 
 #category for VendorQuality
 complete['VendorQuality'] = 'Bad'
